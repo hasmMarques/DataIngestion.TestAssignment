@@ -36,4 +36,9 @@
     <PackageReference Include="NEST.JsonNetSerializer" Version="7.9.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DataIngestion.Ingest\DataIngestion.Ingest.csproj" />
+    <ProjectReference Include="..\DataIngestion.Repository\DataIngestion.DB.csproj" />
+  </ItemGroup>
+
 </Project>
