@@ -136,10 +136,31 @@ namespace DataIngestion.DB.Repository
                 _logger.LogInformation("Saved 0 collectionMatch.");
                 return false;
             }
-            catch (Microsoft.EntityFrameworkCore.DbUpdateException sqlex)
+            catch (DbUpdateException sqlex)
             {
                 _logger.LogError(sqlex.Message, sqlex.Message, collectionMatch);
                 return false;
+            }
+        }
+
+        public async Task<int> GetRowCount()
+        {
+            try
+            {
+                await using var entities = new DataIngestionContext();
+
+                var res = (from atc in entities.ArtistCollection
+                           join col in entities.Collection on atc.CollectionId equals col.CollectionId
+                           join art in entities.Artist on atc.ArtistId equals art.ArtistId
+                           join clm in entities.CollectionMatch on atc.CollectionId equals clm.CollectionId
+                           select new {atc, col, art, clm}).Count();
+
+                return res;
+            }
+            catch (DbUpdateException sqlex)
+            {
+                _logger.LogError(sqlex.Message, sqlex.Message);
+                return 0;
             }
         }
 
