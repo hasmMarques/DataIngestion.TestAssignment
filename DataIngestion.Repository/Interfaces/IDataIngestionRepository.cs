@@ -6,6 +6,7 @@ namespace DataIngestion.DB.Interfaces
 {
     public interface IDataIngestionRepository
     {
+        Task<int> GetTotalRowsOfAlbums();
         Task<bool> InsertArtist(Artist artist);
         Task<bool> InsertArtistCollection(ArtistCollection artistCollection);
         Task<bool> InsertCollection(Collection collection);
