@@ -45,15 +45,15 @@ namespace DataIngestion.TestAssignment
 				.CreateLogger<Program>();
 			logger.LogDebug("Starting application");
 
-			//do the actual work here
-			//var downloadZipFile = serviceProvider.GetService<IDownloadDataService>();
-			//downloadZipFile.DownloadZipFile();
-			//var extractDataService = serviceProvider.GetService<IExtractDataService>();
-			//extractDataService.Extract();
-			var persistDataService = serviceProvider.GetService<IPersistDataService>();
-			persistDataService.PersistData();
+            //do the actual work here
+            //var downloadZipFile = serviceProvider.GetService<IDownloadDataService>();
+            //downloadZipFile.DownloadZipFile();
+            //var extractDataService = serviceProvider.GetService<IExtractDataService>();
+            //extractDataService.Extract();
+            var persistDataService = serviceProvider.GetService<IPersistDataService>();
+            persistDataService.PersistData();
 
-			logger.LogDebug("All done!");
+            logger.LogDebug("All done!");
 
 			Console.ReadKey();
 		}

@@ -31,12 +31,13 @@ namespace DataIngestion.Ingest.Services
 		{
 			try
 			{
+				Console.WriteLine("Decompressing files");
 				var googleDriveFiles = _configurationRoot.GetSection("GoogleDriveFiles").GetChildren();
 				var startPath = _configurationRoot.GetValue<string>("DestinationPath");
 				var destPath = _configurationRoot.GetValue<string>("UnZip:ExtractToPathPath");
 
 				CreateDirIfMissing(destPath);
-
+				
 				ExtractTBZ(googleDriveFiles, startPath, destPath);
 
 				ExtractTar(googleDriveFiles, destPath);
@@ -74,14 +75,14 @@ namespace DataIngestion.Ingest.Services
 				var destFileName = $"{destPath}\\{configurationSection.Key}.tar";
 				ExtractTGZ(sourceFileName, destFileName);
 
-				Console.Write($"\rDecompressing {sourceFileName} - Done");
+				Console.Write($"\rDecompressing {sourceFileName} - Done {Environment.NewLine}");
 			}
 		}
 
 		private void ExtractTar(string tarFileName, string destFolder)
 		{
-			Console.WriteLine(
-				$"Decompressing {tarFileName}");
+			Console.Write(
+				$"\rDecompressing {tarFileName}");
 			Stream inStream = File.OpenRead(tarFileName);
 
 			var tarArchive = TarArchive.CreateInputTarArchive(inStream);
@@ -99,9 +100,9 @@ namespace DataIngestion.Ingest.Services
 			using var decompressedStream = File.Create(decompressedFileName);
 			try
 			{
+				Console.Write(
+					$"\rDecompressing {gzArchiveName}");
 				BZip2.Decompress(fileToDecompressAsStream, decompressedStream, true);
-				Console.WriteLine(
-					$"Decompressing {gzArchiveName}");
 			}
 			catch (Exception ex)
 			{

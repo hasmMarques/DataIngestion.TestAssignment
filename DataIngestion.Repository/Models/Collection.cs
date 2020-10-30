@@ -6,7 +6,7 @@ namespace DataIngestion.DB.Models
     public partial class Collection
     {
         public string ExportDate { get; set; }
-        public long CollectionId { get; set; }
+        public string CollectionId { get; set; }
         public string Name { get; set; }
         public string TitleVersion { get; set; }
         public string SearchTerms { get; set; }

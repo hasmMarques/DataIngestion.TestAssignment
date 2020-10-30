@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using DataIngestion.DB.Interfaces;
 using DataIngestion.DB.Models;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-
-//Scaffold-DbContext "Server=(localdb)\MSSQLLocalDB;Database=DataIngestion;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
 
 namespace DataIngestion.DB.Repository
 {
@@ -30,78 +31,114 @@ namespace DataIngestion.DB.Repository
 
         public async Task<bool> InsertArtist(Artist artist)
         {
-            if (artist == null) throw new ArgumentNullException(nameof(artist));
-            await using var entities = new DataIngestionContext();
-
-            await entities.Artist.AddAsync(artist).ConfigureAwait(true);
-            var saveChanges = await entities.SaveChangesAsync().ConfigureAwait(true);
-
-            if (saveChanges > 0)
+            try
             {
-                _logger.LogInformation($"Saved {artist.Name} artistCollection.");
+                if (artist == null) return false;
+                await using var entities = new DataIngestionContext();
+                if (entities.Artist.Any(o => o.ArtistId == artist.ArtistId)) return false;
 
-                return true;
+                await entities.Artist.AddAsync(artist).ConfigureAwait(true);
+                var saveChanges = await entities.SaveChangesAsync().ConfigureAwait(true);
+
+                if (saveChanges > 0)
+                {
+                    _logger.LogInformation($"Saved {artist.Name} artistCollection.");
+
+                    return true;
+                }
+
+                _logger.LogInformation("Saved 0 artist.");
+                return false;
             }
-
-            _logger.LogInformation("Saved 0 artist.");
-            return false;
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException sqlex)
+            {
+                _logger.LogError(sqlex.Message, sqlex.Message, artist);
+                return false;
+            }
         }
 
         public async Task<bool> InsertArtistCollection(ArtistCollection artistCollection)
         {
-            if (artistCollection == null) throw new ArgumentNullException(nameof(artistCollection));
-            await using var entities = new DataIngestionContext();
-
-            await entities.ArtistCollection.AddAsync(artistCollection);
-            var saveChangesAsync = await entities.SaveChangesAsync().ConfigureAwait(true);
-
-            if (saveChangesAsync > 0)
+            try
             {
-                _logger.LogInformation("Saved 1 artistCollection.");
+                if (artistCollection == null) return false;
+                await using var entities = new DataIngestionContext();
+                if (entities.ArtistCollection.Any(o => o.CollectionId == artistCollection.CollectionId)) return false;
 
-                return true;
+                await entities.ArtistCollection.AddAsync(artistCollection);
+                var saveChangesAsync = await entities.SaveChangesAsync().ConfigureAwait(true);
+
+                if (saveChangesAsync > 0)
+                {
+                    _logger.LogInformation("Saved 1 artistCollection.");
+
+                    return true;
+                }
+
+                _logger.LogInformation("Saved 0 artistCollection.");
+                return false;
             }
-
-            _logger.LogInformation("Saved 0 artistCollection.");
-            return false;
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException sqlex)
+            {
+                _logger.LogError(sqlex.Message, sqlex.Message, artistCollection);
+                return false;
+            }
         }
 
         public async Task<bool> InsertCollection(Collection collection)
         {
-            if (collection == null) throw new ArgumentNullException(nameof(collection));
-            await using var entities = new DataIngestionContext();
-
-            await entities.Collection.AddAsync(collection);
-            var saveChangesAsync = await entities.SaveChangesAsync().ConfigureAwait(true);
-
-            if (saveChangesAsync > 0)
+            try
             {
-                _logger.LogInformation("Saved 1 collection.");
+                if (collection == null) return false;
+                await using var entities = new DataIngestionContext();
+                if (await entities.Collection.AnyAsync(o => o.CollectionId == collection.CollectionId).ConfigureAwait(true)) return false;
 
-                return true;
+                await entities.Collection.AddAsync(collection).ConfigureAwait(true);
+                var saveChangesAsync = await entities.SaveChangesAsync().ConfigureAwait(true);
+
+                if (saveChangesAsync > 0)
+                {
+                    _logger.LogInformation("Saved 1 collection.");
+
+                    return true;
+                }
+
+                _logger.LogInformation("Saved 0 collection.");
+                return false;
             }
-
-            _logger.LogInformation("Saved 0 collection.");
-            return false;
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException sqlex)
+            {
+                _logger.LogError(sqlex.Message, sqlex.Message, collection);
+                return false;
+            }
         }
 
         public async Task<bool> InsertCollectionMatch(CollectionMatch collectionMatch)
         {
-            if (collectionMatch == null) throw new ArgumentNullException(nameof(collectionMatch));
-            await using var entities = new DataIngestionContext();
-
-            await entities.CollectionMatch.AddAsync(collectionMatch);
-            var saveChangesAsync = await entities.SaveChangesAsync().ConfigureAwait(true);
-
-            if (saveChangesAsync > 0)
+            try
             {
-                _logger.LogInformation("Saved 1 collectionMatch.");
+                if (collectionMatch == null) return false;
+                await using var entities = new DataIngestionContext();
+                if (entities.CollectionMatch.Any(o => o.CollectionId == collectionMatch.CollectionId)) return false;
 
-                return true;
+                await entities.CollectionMatch.AddAsync(collectionMatch);
+                var saveChangesAsync = await entities.SaveChangesAsync().ConfigureAwait(true);
+
+                if (saveChangesAsync > 0)
+                {
+                    _logger.LogInformation("Saved 1 collectionMatch.");
+
+                    return true;
+                }
+
+                _logger.LogInformation("Saved 0 collectionMatch.");
+                return false;
             }
-
-            _logger.LogInformation("Saved 0 collectionMatch.");
-            return false;
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException sqlex)
+            {
+                _logger.LogError(sqlex.Message, sqlex.Message, collectionMatch);
+                return false;
+            }
         }
 
         #endregion

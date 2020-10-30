@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DataBase\**" />
+    <Compile Remove="Data\**" />
+    <EmbeddedResource Remove="DataBase\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <None Remove="DataBase\**" />
+    <None Remove="Data\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.9">
       <PrivateAssets>all</PrivateAssets>
@@ -18,11 +27,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.9" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.9" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DataBase\" />
-    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>

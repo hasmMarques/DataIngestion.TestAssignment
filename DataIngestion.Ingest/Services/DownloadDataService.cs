@@ -33,7 +33,7 @@ namespace DataIngestion.Ingest.Services
 		{
             try
             {
-                fileDownloader = InitiateFileDownloader();
+                InitiateFileDownloader();
 
                 Download();
 
@@ -50,7 +50,8 @@ namespace DataIngestion.Ingest.Services
 		{
 			var googleDriveFiles = _configurationRoot.GetSection("GoogleDriveFiles").GetChildren();
 			var destPath = _configurationRoot.GetValue<string>("DestinationPath");
-
+			
+			Console.WriteLine("Downloading files");
 			foreach (var configurationSection in googleDriveFiles)
 			{
 				finished = false;
@@ -63,17 +64,16 @@ namespace DataIngestion.Ingest.Services
 			}
 		}
 
-		private FileDownloader InitiateFileDownloader()
+		private void InitiateFileDownloader()
 		{
 			// NOTE: FileDownloader is IDisposable!
-			var fileDownloader = new FileDownloader();
+			fileDownloader = new FileDownloader();
 
 			// This callback is triggered for DownloadFileAsync only
 			fileDownloader.DownloadProgressChanged += FileDownloaderOnDownloadProgressChanged;
 
 			// This callback is triggered for both DownloadFile and DownloadFileAsync
 			fileDownloader.DownloadFileCompleted += FileDownloaderOnDownloadFileCompleted;
-			return fileDownloader;
 		}
 
 		#endregion
