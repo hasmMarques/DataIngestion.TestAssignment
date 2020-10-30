@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataIngestion.DB.Interfaces;
@@ -143,7 +144,7 @@ namespace DataIngestion.DB.Repository
             }
         }
 
-        public async Task<int> GetRowCount()
+        public async Task<int> GetTotalRowsOfAlbums()
         {
             try
             {
@@ -151,9 +152,53 @@ namespace DataIngestion.DB.Repository
 
                 var res = (from atc in entities.ArtistCollection
                            join col in entities.Collection on atc.CollectionId equals col.CollectionId
-                           join art in entities.Artist on atc.ArtistId equals art.ArtistId
                            join clm in entities.CollectionMatch on atc.CollectionId equals clm.CollectionId
-                           select new {atc, col, art, clm}).Count();
+                           select new
+                           {
+                               col.CollectionId, 
+                               col.Name,
+                               col.ViewUrl,
+                               clm.Upc,
+                               col.OriginalReleaseDate,
+                               col.IsCompilation,
+                               col.LabelStudio,
+                               col.ArtworkUrl,
+                               Lists=
+                               (from at in entities.Artist where at.ArtistId == atc.ArtistId select new {at.ArtistId, at.Name}).ToList()
+                               
+                           }).Count();
+                return res;
+            }
+            catch (DbUpdateException sqlex)
+            {
+                _logger.LogError(sqlex.Message, sqlex.Message);
+                return 0;
+            }
+        }
+
+        public async Task<object> GetAlbumsSkipTake(int skip, int take)
+        {
+            try
+            {
+                await using var entities = new DataIngestionContext();
+
+                var res = (from atc in entities.ArtistCollection
+                    join col in entities.Collection on atc.CollectionId equals col.CollectionId
+                    join clm in entities.CollectionMatch on atc.CollectionId equals clm.CollectionId
+                    select new
+                    {
+                        col.CollectionId, 
+                        col.Name,
+                        col.ViewUrl,
+                        clm.Upc,
+                        col.OriginalReleaseDate,
+                        col.IsCompilation,
+                        col.LabelStudio,
+                        col.ArtworkUrl,
+                        Lists=
+                            (from at in entities.Artist where at.ArtistId == atc.ArtistId select new {at.ArtistId, at.Name}).ToList()
+                               
+                    }).ToList();
 
                 return res;
             }
