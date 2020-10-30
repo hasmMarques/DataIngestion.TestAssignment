@@ -176,7 +176,7 @@ namespace DataIngestion.DB.Repository
             }
         }
 
-        public async Task<object> GetAlbumsSkipTake(int skip, int take)
+        public async Task<object> GetAlbums(int skip, int take)
         {
             try
             {
@@ -198,7 +198,7 @@ namespace DataIngestion.DB.Repository
                         Lists=
                             (from at in entities.Artist where at.ArtistId == atc.ArtistId select new {at.ArtistId, at.Name}).ToList()
                                
-                    }).ToList();
+                    }).Skip(skip).Take(take).ToList();
 
                 return res;
             }
