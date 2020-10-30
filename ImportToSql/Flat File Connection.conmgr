@@ -1,0 +1,72 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Flat File Artist"
+  DTS:DTSID="{6DCCCDD6-C2D8-4E30-96AE-7C4CD0239C18}"
+  DTS:CreationName="MULTIFLATFILE">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:Format="Delimited"
+      DTS:LocaleID="1033"
+      DTS:HeaderRowsToSkip="3"
+      DTS:HeaderRowDelimiter="_x000A_"
+      DTS:RowDelimiter=""
+      DTS:TextQualifier="_x003C_none_x003E_"
+      DTS:CodePage="1252"
+      DTS:ConnectionString="D:\FilesToDigest\Artist\tar">
+      <DTS:FlatFileColumns>
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x0001_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="exportDate"
+          DTS:DTSID="{5FBE3049-37E9-407B-99BC-784FA3F55203}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x0001_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="artistId"
+          DTS:DTSID="{488E7D1B-5BBA-4F83-8154-4D893CD54CFF}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x0001_"
+          DTS:DataType="302"
+          DTS:TextQualified="True"
+          DTS:ObjectName="name"
+          DTS:DTSID="{08D4B0F0-5C37-49DB-A9CD-8608E5AACBD0}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x0001_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="isActualArtist"
+          DTS:DTSID="{E16DB15E-4284-422F-99B4-5F8F502AE4C6}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x0001_"
+          DTS:DataType="302"
+          DTS:TextQualified="True"
+          DTS:ObjectName="viewUrl"
+          DTS:DTSID="{F9E055E1-DDB5-4531-B7CD-2C0F59393216}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x000A_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="artistTypeId"
+          DTS:DTSID="{541707AE-F812-4711-9C9A-CBCAA2CA0B75}"
+          DTS:CreationName="" />
+      </DTS:FlatFileColumns>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

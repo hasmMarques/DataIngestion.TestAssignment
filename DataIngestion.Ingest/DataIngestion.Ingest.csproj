@@ -15,4 +15,10 @@
     <ProjectReference Include="..\DataIngestion.Repository\DataIngestion.DB.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap">
+      <HintPath>..\packages\64\Microsoft.SqlServer.DTSRuntimeWrap.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

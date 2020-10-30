@@ -51,7 +51,7 @@ namespace DataIngestion.TestAssignment
             //var extractDataService = serviceProvider.GetService<IExtractDataService>();
             //extractDataService.Extract();
             var persistDataService = serviceProvider.GetService<IPersistDataService>();
-            persistDataService.PersistData();
+            persistDataService.PersistData1();
 
             logger.LogDebug("All done!");
 

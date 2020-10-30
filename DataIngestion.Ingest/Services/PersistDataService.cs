@@ -7,6 +7,9 @@ using DataIngestion.DB.Interfaces;
 using DataIngestion.DB.Models;
 using DataIngestion.Ingest.Interfaces;
 using Microsoft.Extensions.Configuration;
+using Microsoft.SqlServer.Dts.Runtime;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+using Task = System.Threading.Tasks.Task;
 
 namespace DataIngestion.Ingest.Services
 {
@@ -33,7 +36,43 @@ namespace DataIngestion.Ingest.Services
 
 		#region Public Methods
 
-		public bool PersistData()
+		public bool PersistData2()
+		{
+			try
+			{
+				var watch = new Stopwatch();
+				watch.Start();
+
+				Console.WriteLine("Persisting data in Database please wait.");
+
+				var eventListener = new MyEventListener();
+
+                var pkgLocation = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\ImportToSql\\Package.dtsx");
+                var app = new Application();
+				var dtsPackage100 = app.LoadPackage(pkgLocation, true, eventListener);
+				var pkgResults = dtsPackage100.Execute(null, null, eventListener, null, null);  
+  
+				Console.WriteLine(pkgResults.ToString());  
+				Console.ReadKey();  
+
+
+				watch.Stop();
+
+				var timeSpan = watch.Elapsed;
+
+				Console.WriteLine("Writing data to DB toke: {0}h {1}m {2}s {3}ms", timeSpan.Hours, timeSpan.Minutes,
+					timeSpan.Seconds, timeSpan.Milliseconds);
+
+				return true;
+			}
+			catch (IOException ioex)
+			{
+				Console.WriteLine(ioex.Message);
+				return false;
+			}
+		}
+
+		public bool PersistData1()
 		{
 			try
 			{
@@ -230,4 +269,86 @@ namespace DataIngestion.Ingest.Services
 
 		#endregion
 	}
+
+	public class MyEventListener : IDTSEvents100  
+	{
+		public void OnPreExecute(IDTSExecutable100 pExec, ref bool pbFireAgain)
+		{
+			
+		}
+
+		public void OnPostExecute(IDTSExecutable100 pExec, ref bool pbFireAgain)
+		{
+			
+		}
+
+		public void OnPreValidate(IDTSExecutable100 pExec, ref bool pbFireAgain)
+		{
+			
+		}
+
+		public void OnPostValidate(IDTSExecutable100 pExec, ref bool pbFireAgain)
+		{
+			
+		}
+
+		public void OnWarning(IDTSRuntimeObject100 pSource, int WarningCode, string SubComponent, string Description, string HelpFile,
+			int HelpContext, string IDOfInterfaceWithError)
+		{
+			
+		}
+
+		public void OnInformation(IDTSRuntimeObject100 pSource, int InformationCode, string SubComponent, string Description,
+			string HelpFile, int HelpContext, string IDOfInterfaceWithError, ref bool pbFireAgain)
+		{
+			
+		}
+
+		public void OnError(IDTSRuntimeObject100 pSource, int ErrorCode, string SubComponent, string Description, string HelpFile,
+			int HelpContext, string IDOfInterfaceWithError, out bool pbCancel)
+		{
+			pbCancel = false;
+			// Add application-specific diagnostics here.  
+			Console.WriteLine("Error in {0}/{1} : {2}", pSource, SubComponent, Description);
+			var res = pbCancel;
+		}
+
+		public void OnTaskFailed(IDTSTaskHost100 pTaskHost)
+		{
+			
+		}
+
+		public void OnProgress(IDTSTaskHost100 pTaskHost, string ProgressDescription, int PercentComplete, int ProgressCountLow,
+			int ProgressCountHigh, string SubComponent, ref bool pbFireAgain)
+		{
+			
+		}
+
+		public void OnQueryCancel(out bool pbCancel)
+		{
+			pbCancel = false;
+			var res = pbCancel;
+		}
+
+		public void OnBreakpointHit(IDTSBreakpointSite100 pBreakpointSite, IDTSBreakpointTarget100 pBreakpointTarget)
+		{
+			
+		}
+
+		public void OnExecutionStatusChanged(IDTSExecutable100 pExec, DTSExecStatus newStatus, ref bool pbFireAgain)
+		{
+			
+		}
+
+		public void OnVariableValueChanged(IDTSContainer100 pContainer, IDTSVariable100 pVariable, ref bool pbFireAgain)
+		{
+			
+		}
+
+		public void OnCustomEvent(IDTSTaskHost100 pTaskHost, string EventName, string EventText, ref object[] ppsaArguments,
+			string SubComponent, ref bool pbFireAgain)
+		{
+			
+		}
+	}  
 }

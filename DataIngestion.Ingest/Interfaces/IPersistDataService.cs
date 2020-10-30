@@ -4,6 +4,7 @@ namespace DataIngestion.Ingest.Interfaces
 {
     public interface IPersistDataService
     {
-        bool PersistData();
+        bool PersistData1();
+        bool PersistData2();
     }
 }

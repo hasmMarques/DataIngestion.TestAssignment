@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -39,6 +39,12 @@
   <ItemGroup>
     <ProjectReference Include="..\DataIngestion.Ingest\DataIngestion.Ingest.csproj" />
     <ProjectReference Include="..\DataIngestion.Repository\DataIngestion.DB.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap">
+      <HintPath>..\packages\64\Microsoft.SqlServer.DTSRuntimeWrap.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

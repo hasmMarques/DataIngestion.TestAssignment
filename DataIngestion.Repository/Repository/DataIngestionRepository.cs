@@ -63,7 +63,9 @@ namespace DataIngestion.DB.Repository
             {
                 if (artistCollection == null) return false;
                 await using var entities = new DataIngestionContext();
-                if (entities.ArtistCollection.Any(o => o.CollectionId == artistCollection.CollectionId)) return false;
+                if (entities.ArtistCollection.Any(o => o.CollectionId == artistCollection.CollectionId
+                                                       && o.ArtistId == artistCollection.ArtistId
+                                                       && o.RoleId == artistCollection.RoleId)) return false;
 
                 await entities.ArtistCollection.AddAsync(artistCollection);
                 var saveChangesAsync = await entities.SaveChangesAsync().ConfigureAwait(true);

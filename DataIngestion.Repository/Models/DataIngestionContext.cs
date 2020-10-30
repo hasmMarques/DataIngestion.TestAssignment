@@ -25,8 +25,8 @@ namespace DataIngestion.DB.Models
             if (!optionsBuilder.IsConfigured)
             {
                 //TODO:move to vault or to appsettings.json
-                //optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=DataIngestion;Integrated Security=True");
-                optionsBuilder.UseSqlServer("Server=DESKTOP-RAISED2\\SQLEXPRESS;Database=DataIngestion;Integrated Security=True");
+                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=DataIngestion;Integrated Security=True");
+                //optionsBuilder.UseSqlServer("Server=DESKTOP-RAISED2\SQLEXPRESS;Database=DataIngestion;Integrated Security=True");
             }
         }
 
@@ -66,7 +66,7 @@ namespace DataIngestion.DB.Models
             modelBuilder.Entity<ArtistCollection>(entity =>
             {
                 entity.HasKey(e => new { e.ArtistId, e.CollectionId, e.RoleId })
-                    .HasName("PK__ArtistCo__B132EB54FE1BA026");
+                    .HasName("PK__ArtistCo__B132EB54CE048B27");
 
                 entity.Property(e => e.ArtistId)
                     .HasColumnName("artistId")
@@ -98,7 +98,7 @@ namespace DataIngestion.DB.Models
             {
                 entity.Property(e => e.CollectionId)
                     .HasColumnName("collectionId")
-                    .HasMaxLength(100)
+                    .HasMaxLength(500)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ArtistDisplayName)
@@ -180,7 +180,7 @@ namespace DataIngestion.DB.Models
             modelBuilder.Entity<CollectionMatch>(entity =>
             {
                 entity.HasKey(e => e.CollectionId)
-                    .HasName("PK__Collecti__5BCE195CA72FD56C");
+                    .HasName("PK__Collecti__5BCE195C00C6FB28");
 
                 entity.Property(e => e.CollectionId)
                     .HasColumnName("collectionId")

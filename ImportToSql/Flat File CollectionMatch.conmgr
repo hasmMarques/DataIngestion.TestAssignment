@@ -1,0 +1,62 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Flat File CollectionMatch"
+  DTS:DTSID="{611D0CFB-9142-4B9E-96CA-7BBE0E8156BE}"
+  DTS:CreationName="FLATFILE">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:Format="Delimited"
+      DTS:LocaleID="1033"
+      DTS:HeaderRowsToSkip="3"
+      DTS:HeaderRowDelimiter="_x000A_"
+      DTS:RowDelimiter=""
+      DTS:TextQualifier="_x003C_none_x003E_"
+      DTS:CodePage="1252"
+      DTS:ConnectionString="D:\FilesToDigest\CollectionMatch\tar">
+      <DTS:FlatFileColumns>
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x0001_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="exportDate"
+          DTS:DTSID="{72936925-A9BF-4097-911F-E961BF4356B9}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x0001_"
+          DTS:DataType="302"
+          DTS:TextQualified="True"
+          DTS:ObjectName="collectionId"
+          DTS:DTSID="{6246AAC9-B32F-43DF-B9B9-EB4E538B580F}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x0001_"
+          DTS:DataType="302"
+          DTS:TextQualified="True"
+          DTS:ObjectName="upc"
+          DTS:DTSID="{39836D3A-DD8E-4A4B-B15D-614C0A715BA2}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x0001_"
+          DTS:DataType="302"
+          DTS:TextQualified="True"
+          DTS:ObjectName="grid"
+          DTS:DTSID="{666339F0-83E7-49DA-914D-4B27074EA4AA}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x000A_"
+          DTS:MaximumWidth="8"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="amgAlbumId"
+          DTS:DTSID="{18E4F55F-EFFD-44B1-9CDD-77A95D3E1B1C}"
+          DTS:CreationName="" />
+      </DTS:FlatFileColumns>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
