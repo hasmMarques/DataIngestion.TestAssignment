@@ -25,19 +25,19 @@ namespace DataIngestion.TestAssignment
 		{
 			RegisterServices();
 
-			//var downloadZipFile = serviceProvider.GetService<IDownloadDataService>();
-			//downloadZipFile.DownloadZipFile();
+            var downloadZipFile = serviceProvider.GetService<IDownloadDataService>();
+            downloadZipFile.DownloadZipFile();
 
-			var extractDataService = serviceProvider.GetService<IExtractDataService>();
-			extractDataService.Extract();
+            var extractDataService = serviceProvider.GetService<IExtractDataService>();
+            extractDataService.Extract();
 
-			//var persistDataService = serviceProvider.GetService<IPersistDataService>();
-			//persistDataService.PersistData1();
+            var persistDataService = serviceProvider.GetService<IPersistDataService>();
+            persistDataService.PersistData1();
 
-			//var elasticSearch = serviceProvider.GetService<IElasticSearchService>();
-			//elasticSearch.Import();
+            var elasticSearch = serviceProvider.GetService<IElasticSearchService>();
+            elasticSearch.Import();
 
-			logger.LogDebug("All done!");
+            logger.LogDebug("All done!");
 
 			Console.ReadKey();
 		}
