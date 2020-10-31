@@ -5,14 +5,6 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-/* EXAMPLE USAGE
-	FileDownloader fileDownloader = new FileDownloader();
-	// This callback is triggered for DownloadFileAsync only
-	fileDownloader.DownloadProgressChanged += ( sender, e ) => Console.WriteLine( "Progress changed " + e.BytesReceived + " " + e.TotalBytesToReceive );
-	// This callback is triggered for both DownloadFile and DownloadFileAsync
-	fileDownloader.DownloadFileCompleted += ( sender, e ) => Console.WriteLine( "Download completed" );
-	fileDownloader.DownloadFileAsync( "https://INSERT_DOWNLOAD_LINK_HERE", @"C:\downloadedFile.txt" );
-*/
 namespace DataIngestion.Ingest.Services
 {
 	public class FileDownloader : IDisposable
@@ -54,13 +46,6 @@ namespace DataIngestion.Ingest.Services
 
 			downloadProgress = new DownloadProgress();
 		}
-
-		#endregion
-
-		#region Events
-
-		public event DownloadProgressChangedEventHandler DownloadProgressChanged;
-		public event AsyncCompletedEventHandler DownloadFileCompleted;
 
 		#endregion
 
@@ -245,14 +230,22 @@ namespace DataIngestion.Ingest.Services
 
 		#endregion
 
+		#region Events
+
+		public event DownloadProgressChangedEventHandler DownloadProgressChanged;
+		public event AsyncCompletedEventHandler DownloadFileCompleted;
+
+		#endregion
+
 		// Custom download progress reporting (needed for Google Drive)
 		public class DownloadProgress
 		{
 			#region Fields
 
 			public long BytesReceived, TotalBytesToReceive;
+			public string FileName;
 			public object UserState;
-			public string FileName ;
+
 			#endregion
 
 			#region Properties

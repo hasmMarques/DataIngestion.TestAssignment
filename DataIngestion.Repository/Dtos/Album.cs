@@ -1,12 +1,12 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace DataIngestion.DB.Dtos
 {
-	public class Album
+	public partial class Album
 	{
 		#region Properties
 
-		public string Id { get; set; }
+		public long AlbumId { get; set; }
 		public string Name { get; set; }
 		public string Url { get; set; }
 		public string Upc { get; set; }
@@ -14,7 +14,8 @@ namespace DataIngestion.DB.Dtos
 		public string IsCompilation { get; set; }
 		public string Label { get; set; }
 		public string ImageUrl { get; set; }
-		public Artist[] Artists { get; set; }
+		public long IdAlbumArtist { get; set; }
+		public List<AlbumArtist> Artist { get; set; }
 
 		#endregion
 	}

@@ -12,7 +12,7 @@
       DTS:RowDelimiter=""
       DTS:TextQualifier="_x003C_none_x003E_"
       DTS:CodePage="1252"
-      DTS:ConnectionString="D:\FilesToDigest\Artist\tar">
+      DTS:ConnectionString="C:\FilesToDigest\Artist\tar">
       <DTS:FlatFileColumns>
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -21,7 +21,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="exportDate"
-          DTS:DTSID="{5FBE3049-37E9-407B-99BC-784FA3F55203}"
+          DTS:DTSID="{CCAECAEE-8BD2-4504-984E-54AE60324498}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -30,7 +30,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="artistId"
-          DTS:DTSID="{488E7D1B-5BBA-4F83-8154-4D893CD54CFF}"
+          DTS:DTSID="{36D361EF-632F-40E2-9E3A-09546B2C9735}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -38,7 +38,7 @@
           DTS:DataType="302"
           DTS:TextQualified="True"
           DTS:ObjectName="name"
-          DTS:DTSID="{08D4B0F0-5C37-49DB-A9CD-8608E5AACBD0}"
+          DTS:DTSID="{E8F19606-7E26-4F3A-A1EF-D7353A81ADCF}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -47,7 +47,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="isActualArtist"
-          DTS:DTSID="{E16DB15E-4284-422F-99B4-5F8F502AE4C6}"
+          DTS:DTSID="{D9FA7C66-CC3E-4933-ADD3-DB86491514E9}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -55,7 +55,7 @@
           DTS:DataType="302"
           DTS:TextQualified="True"
           DTS:ObjectName="viewUrl"
-          DTS:DTSID="{F9E055E1-DDB5-4531-B7CD-2C0F59393216}"
+          DTS:DTSID="{BE00A3C5-617B-4FB9-BC98-71D30A337EB3}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -64,7 +64,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="artistTypeId"
-          DTS:DTSID="{541707AE-F812-4711-9C9A-CBCAA2CA0B75}"
+          DTS:DTSID="{F6B0B66E-DBC4-4ACB-9B62-06657B943584}"
           DTS:CreationName="" />
       </DTS:FlatFileColumns>
     </DTS:ConnectionManager>

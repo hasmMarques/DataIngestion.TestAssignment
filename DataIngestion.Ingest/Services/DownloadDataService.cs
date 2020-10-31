@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Net.Http;
-using System.Threading.Tasks;
 using DataIngestion.Ingest.Interfaces;
 using Microsoft.Extensions.Configuration;
 
@@ -11,18 +11,18 @@ namespace DataIngestion.Ingest.Services
 	{
 		#region Fields
 
-		private readonly IConfigurationRoot _configurationRoot;
+		private readonly IConfiguration _configuration;
+		private FileDownloader fileDownloader;
 
 		private bool finished;
-		private FileDownloader fileDownloader;
 
 		#endregion
 
 		#region Constructor
 
-		public DownloadDataService(IConfigurationRoot configurationRoot)
+		public DownloadDataService(IConfiguration configuration)
 		{
-			_configurationRoot = configurationRoot ?? throw new ArgumentNullException(nameof(configurationRoot));
+			_configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
 		}
 
 		#endregion
@@ -31,26 +31,34 @@ namespace DataIngestion.Ingest.Services
 
 		public bool DownloadZipFile()
 		{
-            try
-            {
-                InitiateFileDownloader();
+			try
+			{
+				InitiateFileDownloader();
 
-                Download();
-
-                return true;
-            }
-            catch (HttpRequestException ex)
-            {
-	            Console.WriteLine(ex.Message);
+				return Download();
+			}
+			catch (HttpRequestException ex)
+			{
+				Console.WriteLine(ex.Message);
 				return false;
-            }
+			}
 		}
 
-		private void Download()
+		#endregion
+
+		#region Private Methods
+
+		private bool Download()
 		{
-			var googleDriveFiles = _configurationRoot.GetSection("GoogleDriveFiles").GetChildren();
-			var destPath = _configurationRoot.GetValue<string>("DestinationPath");
-			
+			var googleDriveFiles = _configuration.GetSection("GoogleDriveFiles").GetChildren();
+			var destPath = _configuration.GetValue<string>("Download:DestinationPath");
+
+			if (!ValidUrls(googleDriveFiles))
+			{
+				Console.WriteLine("One or more url are invalid");
+				return false;
+			}
+
 			Console.WriteLine("Downloading files");
 			foreach (var configurationSection in googleDriveFiles)
 			{
@@ -58,10 +66,25 @@ namespace DataIngestion.Ingest.Services
 				fileDownloader.DownloadFileAsync(configurationSection.Value,
 					$"{destPath}{configurationSection.Key}.tbz");
 
-				while (!finished)
-				{
-				}
+				while (!finished) { }
 			}
+
+			return true;
+		}
+
+		private bool ValidUrls(IEnumerable<IConfigurationSection> googleDriveFiles)
+		{
+            foreach (var configurationSection in googleDriveFiles)
+            {
+	            if (!Uri.IsWellFormedUriString(configurationSection.Value, UriKind.Absolute))
+		            return false;
+
+	            if (!Uri.TryCreate(configurationSection.Value, UriKind.Absolute, out var uriResult)
+	                && (uriResult?.Scheme == Uri.UriSchemeHttp || uriResult?.Scheme == Uri.UriSchemeHttps))
+		            return false;
+            }
+
+            return true;
 		}
 
 		private void InitiateFileDownloader()
@@ -75,10 +98,6 @@ namespace DataIngestion.Ingest.Services
 			// This callback is triggered for both DownloadFile and DownloadFileAsync
 			fileDownloader.DownloadFileCompleted += FileDownloaderOnDownloadFileCompleted;
 		}
-
-		#endregion
-
-		#region Private Methods
 
 		private void FileDownloaderOnDownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
 		{

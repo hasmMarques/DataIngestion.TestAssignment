@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{16BFE534-8777-47B3-8BC2-C1937E35F8CF}">
+  DTS:VersionBuild="39"
+  DTS:VersionGUID="{9A030992-2A9D-4D78-95FD-8BA39897B5E9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -21,6 +21,7 @@
       DTS:refId="Package\Data Flow Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{3754B40D-E701-4D1E-A86D-6134FE47ACC2}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -90,8 +91,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Collection Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{8880A92E-C42E-4715-A4A6-8B35D82817B9}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[(localdb)_MSSQLLocalDB.DataIngestion]"
+                  connectionManagerID="{90C24BB7-883A-4614-9E0A-6A199F769E20}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ProjectDbConnection]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -249,9 +250,7 @@
                       name="exportDate" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\Collection Destination.Inputs[OLE DB Destination Input].ExternalColumns[collectionId]"
-                      codePage="1252"
-                      dataType="str"
-                      length="500"
+                      dataType="i8"
                       name="collectionId" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\Collection Destination.Inputs[OLE DB Destination Input].ExternalColumns[name]"
@@ -439,7 +438,7 @@
                 <connection
                   refId="Package\Data Flow Task\Flat File Source.Connections[FlatFileConnection]"
                   connectionManagerID="{5FC3E803-0113-47F4-9397-418B4B7B1488}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Flat File Collection Connection Manager]"
+                  connectionManagerRefId="Project.ConnectionManagers[Flat File Collection]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
@@ -1602,7 +1601,6 @@
       DTS:refId="Package\Extract Artist Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{829C2ACC-319A-43A2-92F3-D674C3C66862}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -1672,8 +1670,8 @@
               <connections>
                 <connection
                   refId="Package\Extract Artist Task\Artist Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{8880A92E-C42E-4715-A4A6-8B35D82817B9}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[(localdb)_MSSQLLocalDB.DataIngestion]"
+                  connectionManagerID="{90C24BB7-883A-4614-9E0A-6A199F769E20}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ProjectDbConnection]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1742,9 +1740,7 @@
                       name="exportDate" />
                     <externalMetadataColumn
                       refId="Package\Extract Artist Task\Artist Destination.Inputs[OLE DB Destination Input].ExternalColumns[artistId]"
-                      codePage="1252"
-                      dataType="str"
-                      length="100"
+                      dataType="i8"
                       name="artistId" />
                     <externalMetadataColumn
                       refId="Package\Extract Artist Task\Artist Destination.Inputs[OLE DB Destination Input].ExternalColumns[name]"
@@ -1760,14 +1756,12 @@
                     <externalMetadataColumn
                       refId="Package\Extract Artist Task\Artist Destination.Inputs[OLE DB Destination Input].ExternalColumns[viewUrl]"
                       codePage="1252"
-                      dataType="str"
-                      length="100"
+                      dataType="text"
                       name="viewUrl" />
                     <externalMetadataColumn
                       refId="Package\Extract Artist Task\Artist Destination.Inputs[OLE DB Destination Input].ExternalColumns[artistTypeId]"
                       codePage="1252"
-                      dataType="str"
-                      length="100"
+                      dataType="text"
                       name="artistTypeId" />
                   </externalMetadataColumns>
                 </input>
@@ -2041,7 +2035,6 @@
       DTS:refId="Package\Extract ArtistCollection Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{BF358AD8-A377-4DFA-B59B-C38F6FB460DE}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -2111,8 +2104,8 @@
               <connections>
                 <connection
                   refId="Package\Extract ArtistCollection Task\ArtistCollection Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{8880A92E-C42E-4715-A4A6-8B35D82817B9}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[(localdb)_MSSQLLocalDB.DataIngestion]"
+                  connectionManagerID="{90C24BB7-883A-4614-9E0A-6A199F769E20}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ProjectDbConnection]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2175,15 +2168,11 @@
                       name="exportDate" />
                     <externalMetadataColumn
                       refId="Package\Extract ArtistCollection Task\ArtistCollection Destination.Inputs[OLE DB Destination Input].ExternalColumns[artistId]"
-                      codePage="1252"
-                      dataType="str"
-                      length="100"
+                      dataType="i8"
                       name="artistId" />
                     <externalMetadataColumn
                       refId="Package\Extract ArtistCollection Task\ArtistCollection Destination.Inputs[OLE DB Destination Input].ExternalColumns[collectionId]"
-                      codePage="1252"
-                      dataType="str"
-                      length="100"
+                      dataType="i8"
                       name="collectionId" />
                     <externalMetadataColumn
                       refId="Package\Extract ArtistCollection Task\ArtistCollection Destination.Inputs[OLE DB Destination Input].ExternalColumns[isPrimaryArtist]"
@@ -2445,7 +2434,6 @@
       DTS:refId="Package\Extract Collection Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{81A5F7F3-A11E-4FBD-BEFF-D284DFA489B2}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -2515,8 +2503,8 @@
               <connections>
                 <connection
                   refId="Package\Extract Collection Task\Collection Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{8880A92E-C42E-4715-A4A6-8B35D82817B9}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[(localdb)_MSSQLLocalDB.DataIngestion]"
+                  connectionManagerID="{90C24BB7-883A-4614-9E0A-6A199F769E20}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ProjectDbConnection]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2673,9 +2661,7 @@
                       name="exportDate" />
                     <externalMetadataColumn
                       refId="Package\Extract Collection Task\Collection Destination.Inputs[OLE DB Destination Input].ExternalColumns[collectionId]"
-                      codePage="1252"
-                      dataType="str"
-                      length="100"
+                      dataType="i8"
                       name="collectionId" />
                     <externalMetadataColumn
                       refId="Package\Extract Collection Task\Collection Destination.Inputs[OLE DB Destination Input].ExternalColumns[name]"
@@ -2814,7 +2800,7 @@
                 <connection
                   refId="Package\Extract Collection Task\Extract Collection Data.Connections[FlatFileConnection]"
                   connectionManagerID="{5FC3E803-0113-47F4-9397-418B4B7B1488}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Flat File Collection Connection Manager]"
+                  connectionManagerRefId="Project.ConnectionManagers[Flat File Collection]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
@@ -3214,8 +3200,7 @@
                     <externalMetadataColumn
                       refId="Package\Extract Collection Task\Extract Collection Data.Outputs[Flat File Source Output].ExternalColumns[collectionId]"
                       codePage="1252"
-                      dataType="str"
-                      length="50"
+                      dataType="text"
                       name="collectionId" />
                     <externalMetadataColumn
                       refId="Package\Extract Collection Task\Extract Collection Data.Outputs[Flat File Source Output].ExternalColumns[exportDate]"
@@ -3355,7 +3340,6 @@
       DTS:refId="Package\Extract CollectionMatch Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{ACF3A629-C6C6-4E3A-A5A0-0FA836C8570E}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -3425,8 +3409,8 @@
               <connections>
                 <connection
                   refId="Package\Extract CollectionMatch Task\CollectionMatch Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{8880A92E-C42E-4715-A4A6-8B35D82817B9}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[(localdb)_MSSQLLocalDB.DataIngestion]"
+                  connectionManagerID="{90C24BB7-883A-4614-9E0A-6A199F769E20}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ProjectDbConnection]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -3487,9 +3471,7 @@
                       name="exportDate" />
                     <externalMetadataColumn
                       refId="Package\Extract CollectionMatch Task\CollectionMatch Destination.Inputs[OLE DB Destination Input].ExternalColumns[collectionId]"
-                      codePage="1252"
-                      dataType="str"
-                      length="100"
+                      dataType="i8"
                       name="collectionId" />
                     <externalMetadataColumn
                       refId="Package\Extract CollectionMatch Task\CollectionMatch Destination.Inputs[OLE DB Destination Input].ExternalColumns[upc]"
@@ -3548,7 +3530,7 @@
                 <property
                   dataType="System.Boolean"
                   description="Specifies whether zero-length columns are treated as null."
-                  name="RetainNulls">false</property>
+                  name="RetainNulls">true</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
@@ -3686,8 +3668,7 @@
                     <externalMetadataColumn
                       refId="Package\Extract CollectionMatch Task\Extract CollectionMatch Data.Outputs[Flat File Source Output].ExternalColumns[collectionId]"
                       codePage="1252"
-                      dataType="str"
-                      length="50"
+                      dataType="text"
                       name="collectionId" />
                     <externalMetadataColumn
                       refId="Package\Extract CollectionMatch Task\Extract CollectionMatch Data.Outputs[Flat File Source Output].ExternalColumns[upc]"
@@ -3761,41 +3742,186 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
+          Size="155,42"
+          Id="Package\Data Flow Task"
+          TopLeft="595,99" />
+        <NodeLayout
           Size="168,42"
           Id="Package\Extract Artist Task"
-          TopLeft="98,64" />
+          TopLeft="120,75" />
         <NodeLayout
           Size="217,42"
           Id="Package\Extract ArtistCollection Task"
           TopLeft="96,147" />
         <NodeLayout
-          Size="221,42"
-          Id="Package\Extract CollectionMatch Task"
-          TopLeft="95,229" />
-        <NodeLayout
           Size="191,42"
           Id="Package\Extract Collection Task"
-          TopLeft="103,310" />
+          TopLeft="107,292" />
         <NodeLayout
-          Size="155,42"
-          Id="Package\Data Flow Task"
-          TopLeft="595,99" />
+          Size="221,42"
+          Id="Package\Extract CollectionMatch Task"
+          TopLeft="94,219" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Data Flow Task\Derived Column"
+          TopLeft="362,346" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Data Flow Task\Flat File Source"
+          TopLeft="210.5,69.5" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Data Flow Task\Collection Destination"
+          TopLeft="469,497" />
+        <NodeLayout
+          Size="99,42"
+          Id="Package\Data Flow Task\Sort"
+          TopLeft="344,210" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="441,388">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="121,109"
+              Start="0,0"
+              End="121,101.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,50.5"
+                    Point2="0,54.5"
+                    Point3="4,54.5" />
+                  <mssgle:LineSegment
+                    End="117,54.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="117,54.5"
+                    Point2="121,54.5"
+                    Point3="121,58.5" />
+                  <mssgle:LineSegment
+                    End="121,101.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Sort Output]"
+          TopLeft="393.5,252">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="47.5,94"
+              Start="0,0"
+              End="47.5,86.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,43"
+                    Point2="0,47"
+                    Point3="4,47" />
+                  <mssgle:LineSegment
+                    End="43.5,47" />
+                  <mssgle:CubicBezierSegment
+                    Point1="43.5,47"
+                    Point2="47.5,47"
+                    Point3="47.5,51" />
+                  <mssgle:LineSegment
+                    End="47.5,86.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Flat File Source Output]"
+          TopLeft="288.5,111.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="105,98.5"
+              Start="0,0"
+              End="105,91">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.25"
+                    Point2="0,49.25"
+                    Point3="4,49.25" />
+                  <mssgle:LineSegment
+                    End="101,49.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="101,49.25"
+                    Point2="105,49.25"
+                    Point3="105,53.25" />
+                  <mssgle:LineSegment
+                    End="105,91" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Collection Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Extract Artist Task">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="221,42"
-          Id="Package\Extract Artist Task\Artist Destination"
-          TopLeft="32,209" />
-        <NodeLayout
           Size="167,42"
           Id="Package\Extract Artist Task\Extract Artist Data"
           TopLeft="35,118" />
+        <NodeLayout
+          Size="221,42"
+          Id="Package\Extract Artist Task\Artist Destination"
+          TopLeft="32,209" />
         <EdgeLayout
           Id="Package\Extract Artist Task.Paths[Flat File Source Output]"
           TopLeft="118.5,160">
@@ -3884,6 +4010,70 @@
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract ArtistCollection Task\ArtistCollection Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Extract Collection Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Extract Collection Task\Extract Collection Data"
+          TopLeft="81,48" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Extract Collection Task\Collection Destination"
+          TopLeft="82,123" />
+        <EdgeLayout
+          Id="Package\Extract Collection Task.Paths[Flat File Source Output]"
+          TopLeft="175.75,90">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Collection Task\Collection Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Extract CollectionMatch Task">
     <LayoutInfo>
@@ -3922,187 +4112,8 @@
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <TaskHost
-    design-time-name="Package\Extract Collection Task">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="186,42"
-          Id="Package\Extract Collection Task\Collection Destination"
-          TopLeft="82,308" />
-        <NodeLayout
-          Size="191,42"
-          Id="Package\Extract Collection Task\Extract Collection Data"
-          TopLeft="81,48" />
-        <EdgeLayout
-          Id="Package\Extract Collection Task.Paths[Flat File Source Output]"
-          TopLeft="175.75,90">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,218"
-              Start="0,0"
-              End="0,210.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,210.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Extract Collection Task\Collection Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Data Flow Task">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="156,42"
-          Id="Package\Data Flow Task\Flat File Source"
-          TopLeft="210.5,69.5" />
-        <NodeLayout
-          Size="99,42"
-          Id="Package\Data Flow Task\Sort"
-          TopLeft="344,210" />
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Flat File Source Output]"
-          TopLeft="288.5,111.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="105,98.5"
-              Start="0,0"
-              End="105,91">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,45.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,45.25"
-                    Point2="0,49.25"
-                    Point3="4,49.25" />
-                  <mssgle:LineSegment
-                    End="101,49.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="101,49.25"
-                    Point2="105,49.25"
-                    Point3="105,53.25" />
-                  <mssgle:LineSegment
-                    End="105,91" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="158,42"
-          Id="Package\Data Flow Task\Derived Column"
-          TopLeft="362,346" />
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Sort Output]"
-          TopLeft="393.5,252">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="47.5,94"
-              Start="0,0"
-              End="47.5,86.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,43" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,43"
-                    Point2="0,47"
-                    Point3="4,47" />
-                  <mssgle:LineSegment
-                    End="43.5,47" />
-                  <mssgle:CubicBezierSegment
-                    Point1="43.5,47"
-                    Point2="47.5,47"
-                    Point3="47.5,51" />
-                  <mssgle:LineSegment
-                    End="47.5,86.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="15.75,52,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="186,42"
-          Id="Package\Data Flow Task\Collection Destination"
-          TopLeft="469,497" />
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Derived Column Output]"
-          TopLeft="441,388">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="121,109"
-              Start="0,0"
-              End="121,101.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,50.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,50.5"
-                    Point2="0,54.5"
-                    Point3="4,54.5" />
-                  <mssgle:LineSegment
-                    End="117,54.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="117,54.5"
-                    Point2="121,54.5"
-                    Point3="121,58.5" />
-                  <mssgle:LineSegment
-                    End="121,101.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\Collection Destination">
+    design-time-name="Package\Extract CollectionMatch Task\CollectionMatch Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

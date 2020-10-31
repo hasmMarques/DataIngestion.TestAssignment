@@ -1,9 +1,11 @@
-﻿using System.Threading.Tasks;
-
-namespace DataIngestion.Ingest.Interfaces
+﻿namespace DataIngestion.Ingest.Interfaces
 {
 	public interface IDownloadDataService
 	{
+		#region Public Methods
+
 		bool DownloadZipFile();
+
+		#endregion
 	}
 }

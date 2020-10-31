@@ -1,0 +1,23 @@
+#export_dateartist_idnameis_actual_artistview_urlartist_type_id
+#primaryKey:artist_id
+#dbTypes:BIGINTBIGINTVARCHAR(1000)BOOLEANVARCHAR(1000)INTEGER
+199999313091Walter Melrose1http://ms.com/artist/walter-melrose/id313091?uo=51
+199999313101Charles Luke1http://ms.com/artist/charles-luke/id313101?uo=51
+199999313109Santo Pecora1http://ms.com/artist/santo-pecora/id313109?uo=51
+199999313592Susanne Norin1http://ms.com/artist/susanne-norin/id313592?uo=51
+199999313605Gundula Anders1http://ms.com/artist/gundula-anders/id313605?uo=51
+199999313648Pamela Dellal1http://ms.com/artist/pamela-dellal/id313648?uo=51
+199999313672Janet Youngdahl1http://ms.com/artist/janet-youngdahl/id313672?uo=51
+199999313829Bill Martin1http://ms.com/artist/bill-martin/id313829?uo=55
+199999313859Crewe1http://ms.com/artist/crewe/id313859?uo=51
+199999313863Gaudio1http://ms.com/artist/gaudio/id313863?uo=51
+199999313923Len Boone1http://ms.com/artist/len-boone/id313923?uo=51
+199999318519William Boyce1http://ms.com/artist/william-boyce/id318519?uo=51
+199999320301K. Mills1http://ms.com/artist/k-mills/id320301?uo=51
+199999320355J. Morris1http://ms.com/artist/j-morris/id320355?uo=51
+199999320417C. Levine1http://ms.com/artist/c-levine/id320417?uo=51
+199999320531Jonathan Dokuchitz1http://ms.com/artist/jonathan-dokuchitz/id320531?uo=51
+199999320569Jody Gelb1http://ms.com/artist/jody-gelb/id320569?uo=51
+199999320573Lisa Leguillou1http://ms.com/artist/lisa-leguillou/id320573?uo=51
+199999320584Anthony Barrile1http://ms.com/artist/anthony-barrile/id320584?uo=51
+#recordsWritten:19492371

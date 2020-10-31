@@ -12,7 +12,7 @@
       DTS:RowDelimiter=""
       DTS:TextQualifier="_x003C_none_x003E_"
       DTS:CodePage="1252"
-      DTS:ConnectionString="D:\FilesToDigest\ArtistCollection\tar">
+      DTS:ConnectionString="C:\FilesToDigest\ArtistCollection\tar">
       <DTS:FlatFileColumns>
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -21,7 +21,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="exportDate"
-          DTS:DTSID="{1672D06B-37E8-4363-9C4F-82B10A53726F}"
+          DTS:DTSID="{9A925381-1B00-492A-9089-FDE1BEAC417F}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -30,7 +30,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="artistId"
-          DTS:DTSID="{29473226-14B5-4C2E-BFD2-49A02EA37B4A}"
+          DTS:DTSID="{98838808-D536-4D06-881A-F13316B51398}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -39,7 +39,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="collectionId"
-          DTS:DTSID="{44A79703-D280-40BF-8890-CB5F4DE4356F}"
+          DTS:DTSID="{4618E9EC-924E-4107-9BA8-CE41DF176746}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -48,7 +48,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="isPrimaryArtist"
-          DTS:DTSID="{09E1F79F-D08D-4448-BB04-3FEC27E9843E}"
+          DTS:DTSID="{1C9A6F95-D0E3-480E-8DF9-74D0D6BFE27F}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -57,7 +57,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="roleId"
-          DTS:DTSID="{DB680BA3-318C-4BC7-ABFE-5C6F081A84EC}"
+          DTS:DTSID="{7FF74496-13F0-4177-8FCB-8D942A5D87E9}"
           DTS:CreationName="" />
       </DTS:FlatFileColumns>
     </DTS:ConnectionManager>

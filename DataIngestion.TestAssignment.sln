@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataIngestion.DB", "DataIng
 EndProject
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ImportToSql", "ImportToSql\ImportToSql.dtproj", "{951F7A2E-6D2A-40DF-B0D4-2A6C5FDAA56C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataIngestion.Tests", "DataIngestion.Tests\DataIngestion.Tests.csproj", "{60D900EB-1F90-498E-8B17-C53C3F15292E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,12 @@ Global
 		{951F7A2E-6D2A-40DF-B0D4-2A6C5FDAA56C}.Development|Any CPU.Build.0 = Development
 		{951F7A2E-6D2A-40DF-B0D4-2A6C5FDAA56C}.Release|Any CPU.ActiveCfg = Development
 		{951F7A2E-6D2A-40DF-B0D4-2A6C5FDAA56C}.Release|Any CPU.Build.0 = Development
+		{60D900EB-1F90-498E-8B17-C53C3F15292E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60D900EB-1F90-498E-8B17-C53C3F15292E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60D900EB-1F90-498E-8B17-C53C3F15292E}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{60D900EB-1F90-498E-8B17-C53C3F15292E}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{60D900EB-1F90-498E-8B17-C53C3F15292E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60D900EB-1F90-498E-8B17-C53C3F15292E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +63,7 @@ Global
 		{FEDF6092-4076-4081-8E31-3225C5DDAF2A} = {A5FE032C-A195-4AD4-A8D6-4FAF1A50E3A3}
 		{B247D75A-D4EC-4E71-BA9F-991E104CD0BD} = {A5FE032C-A195-4AD4-A8D6-4FAF1A50E3A3}
 		{951F7A2E-6D2A-40DF-B0D4-2A6C5FDAA56C} = {A5FE032C-A195-4AD4-A8D6-4FAF1A50E3A3}
+		{60D900EB-1F90-498E-8B17-C53C3F15292E} = {E909D4C9-EA6B-44B5-A004-0F896752284F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5416B5EF-27BA-4E96-B8FA-4B0110910737}

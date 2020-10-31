@@ -1,10 +1,12 @@
-﻿using System.Threading.Tasks;
-
-namespace DataIngestion.Ingest.Interfaces
+﻿namespace DataIngestion.Ingest.Interfaces
 {
-    public interface IPersistDataService
-    {
-        bool PersistData1();
-        bool PersistData2();
-    }
+	public interface IPersistDataService
+	{
+		#region Public Methods
+
+		bool PersistData1();
+		bool PersistData2();
+
+		#endregion
+	}
 }

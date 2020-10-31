@@ -1,7 +1,11 @@
 ﻿namespace DataIngestion.Ingest.Interfaces
 {
-    public interface IExtractDataService
-    {
-        bool Extract();
-    }
+	public interface IExtractDataService
+	{
+		#region Public Methods
+
+		bool Extract();
+
+		#endregion
+	}
 }
