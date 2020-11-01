@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using DataIngestion.DB.Interfaces;
 using DataIngestion.DB.Repository;
 using DataIngestion.Ingest.Interfaces;
@@ -21,24 +22,62 @@ namespace DataIngestion.TestAssignment
 
 		#region Private Methods
 
-		static void Main(string[] args)
+		static async Task Main(string[] args)
 		{
-			RegisterServices();
+			RegisterServices(); //Register the needed services
 
-            var downloadZipFile = serviceProvider.GetService<IDownloadDataService>();
-            downloadZipFile.DownloadZipFile();
+			//Downloads the file from google drive
+			DownloadZipFiles();
 
-            var extractDataService = serviceProvider.GetService<IExtractDataService>();
-            extractDataService.Extract();
+			//Extracts the files 
+			ExtractaData();
 
-            var persistDataService = serviceProvider.GetService<IPersistDataService>();
-            persistDataService.PersistData1();
+			//reads and saves the data into the database
+			PersistData();
 
-            var elasticSearch = serviceProvider.GetService<IElasticSearchService>();
-            elasticSearch.Import();
+			//Reads from database and injects the data into Elasticsearch
+			await SendToElasticsearch().ConfigureAwait(true);
 
-            logger.LogDebug("All done!");
+			logger.LogDebug("All done!");
 
+			Console.ReadKey();
+		}
+
+		private static async Task SendToElasticsearch()
+		{
+			var elasticSearch = serviceProvider.GetService<IElasticSearchService>();
+			var result = await elasticSearch.Import().ConfigureAwait(true);
+			if (!result)
+			{
+				Console.WriteLine("Persisting data from DB into Elasticsearch did not complete successfully");
+				Console.ReadKey();
+			}
+		}
+
+		private static void PersistData()
+		{
+			var persistDataService = serviceProvider.GetService<IPersistDataService>();
+			var result = persistDataService.PersistData1();
+			if (result) return;
+			Console.WriteLine("Persisting data from files into DB did not complete successfully");
+			Console.ReadKey();
+		}
+
+		private static void ExtractaData()
+		{
+			var extractDataService = serviceProvider.GetService<IExtractDataService>();
+			var result = extractDataService.Extract();
+			if (result) return;
+			Console.WriteLine("Extracting files did not complete successfully");
+			Console.ReadKey();
+		}
+
+		private static void DownloadZipFiles()
+		{
+			var downloadZipFile = serviceProvider.GetService<IDownloadDataService>();
+			var result = downloadZipFile.DownloadZipFile();
+			if (result) return;
+			Console.WriteLine("Download files did not complete successfully");
 			Console.ReadKey();
 		}
 
